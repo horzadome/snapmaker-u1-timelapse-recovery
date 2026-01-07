@@ -56,7 +56,7 @@ This script is already bundled in the firmware and doesn't need to be copied man
 
     mv ${ORIGINAL_TIMELAPSE} ${ORIGINAL_TIMELAPSE}_broken
 
-    /usr/local/bin/fix_timelapse.py \
+    /usr/local/bin/fix_timelapse \
     ${ORIGINAL_TIMELAPSE}_broken \
     ${ORIGINAL_TIMELAPSE}
     ```
