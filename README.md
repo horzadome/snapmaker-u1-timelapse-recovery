@@ -1,14 +1,23 @@
 # Snapmaker U1 Timelapse Recovery Tool
 
-A command-line utility to recover corrupted timelapse videos from the Snapmaker U1 3D printer.
+A command-line utility to partially recover corrupted timelapse videos from the Snapmaker U1 3D printer.
 
 ## What It Does
 
 In case of power outage, resource depletion or just weird timeouts, Snapmaker U1 3D printer sometimes produces unfinished timelapse videos.
 These videos still contain some of the footage but are unplayable because their files are corrupted.
-This tool extracts the raw H.264 video data from broken files and remuxes them into playable MP4 videos.
+This tool partially recovers what is possible from such broken timelapse videos and makes them playable again.
 
 ## Installation
+
+### On Your Computer
+
+#### Requirements
+
+- Python 3.7+
+- FFmpeg - Must be installed and accessible in your PATH
+
+Clone this repository or just download the `fix_timelapse.py` script.
 
 ### On Snapmaker U1 Printer
 
@@ -17,20 +26,21 @@ If you would like to run the custom firmware, it is here : https://github.com/pa
 
 If you would like to run it without custom firmware, you'll have to get terminal access to the printer and copy the script there manually. Printer already comes with Python 3 and ffmpeg installed.
 
-### On Your Computer
-
-#### Requirements
-
-- **Python 3.7+**
-- **FFmpeg** - Must be installed and accessible in your PATH
-
 ## Usage
+
+### On your computer
+
+1. Download the `fix_timelapse.py` script from this repository.
+2. Download the broken timelapse video to your computer using Fluidd web interface on your Snapmaker U1 printer.
+3. Run the script:
 
 ```shell
 ./fix_timelapse.py <input_broken_video.mp4> <output_fixed_video.mp4>
 ```
 
-### If running paxx12's Extended Firmware everything is already set up, just do the following:
+### On the printer if running paxx12's Extended Firmware
+
+This script is already bundled in the firmware and doesn't need to be copied manually.
 
 1. Access the printer's terminal via SSH
 2. Locate the correct broken timelapse video file on the printer's storage
@@ -51,8 +61,8 @@ If you would like to run it without custom firmware, you'll have to get terminal
     ${ORIGINAL_TIMELAPSE}
     ```
 
-Original video should be playable again in all the usual places (Orca, Fluidd, etc.)
-Broken file will remain in the original directory with `_broken` suffix for backup. Feel free to delete it after confirming the recovered video works.
+Partially recovered timelapse video should now be playable in all the usual places (Orca, Fluidd, etc.)
+Broken file will remain in the original directory with `_broken` suffix for backup. Feel free to delete it after confirming that the recovered video works.
 
 ## How It Works
 
